@@ -77,7 +77,7 @@ Then:
 
 ## 🔄 Restarting the Server
 
-After making changes to `config.json` or adding new course plugins:
+After making changes to `plugins/config.json` or adding new course plugins:
 
 1. Stop the server (`Ctrl+C`)
 2. Start it again using one of the methods above
@@ -105,7 +105,7 @@ After making changes to `config.json` or adding new course plugins:
 ## 💡 Tips
 
 ✅ Keep the server running while you develop
-✅ You can edit config.json and HTML files, then refresh browser
+✅ You can edit `plugins/config.json` and HTML files, then refresh browser
 ✅ You MUST restart the server if you edit Python files or add new course plugins
 ✅ For production, use a real WSGI server like Gunicorn instead of Flask's debug server
 
@@ -114,7 +114,7 @@ After making changes to `config.json` or adding new course plugins:
 1. Start server with `start-server.bat` (or `.sh`)
 2. Open http://localhost:5000
 3. Make changes to:
-   - `config.json` - Restart server and refresh browser
+   - `plugins/config.json` - Restart server and refresh browser
    - `core/static/` or a plugin's `games/` css/js - Just refresh browser (no restart)
    - `core/templates/` or a plugin's game html - Just refresh browser (no restart)
    - `plugins/` - Restart server

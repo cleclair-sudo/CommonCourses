@@ -1,10 +1,10 @@
 # Configuration Guide
 
-This file documents the `config.json` file which allows developers to customize the project branding and text without changing any code.
+This guide covers `plugins/config.json`, which lets developers customize platform branding and text without changing code. The file is local and ignored by Git, so base-code updates won't overwrite it.
 
 ## Quick Start
 
-Edit `config.json` to change how the platform looks and what it says:
+Copy `plugins/config.example.json` to `plugins/config.json`, then edit the copy:
 
 ```json
 {
@@ -138,7 +138,7 @@ Who maintains this platform.
 
 ## How Configuration Works
 
-1. **Server reads config.json** - When Flask starts, it loads the configuration from `config.json`
+1. **Server reads local config** - When Flask starts, it loads `plugins/config.json` if present; otherwise it uses `plugins/config.example.json`
 2. **API endpoint serves config** - The `/api/config` endpoint makes this data available to the frontend
 3. **JavaScript applies settings** - When you visit the homepage, JavaScript fetches the config and updates the page elements
 
@@ -189,14 +189,14 @@ Returns:
 - Use a JSON validator: https://jsonlint.com
 
 **Can't edit the file?**
-- Make sure you have write permissions to `config.json`
+- Make sure you have write permissions to `plugins/config.json`
 - Try opening it in a plain text editor (not Word)
 
 ## Extending Configuration
 
 Want to add more options? You can:
 
-1. Add new fields to `config.json`
+1. Add new fields to `plugins/config.json` and `plugins/config.example.json`
 2. Update `core/static/js/index.js` to use the new fields
 3. Update the HTML templates to display the new content
 

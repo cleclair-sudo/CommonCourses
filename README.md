@@ -79,7 +79,6 @@ The platform uses an auto-discovery plugin system:
 ```
 .
 ├── app.py                      # Starts the site
-├── config.json
 ├── requirements.txt
 │
 ├── core/                       # BUILT-IN - the platform itself
@@ -89,6 +88,8 @@ The platform uses an auto-discovery plugin system:
 │   └── static/                 # css/js for those pages
 │
 └── plugins/                    # PLUGINS - one folder per course
+    ├── config.example.json     # Default platform settings
+    ├── config.json             # Optional local settings (Git-ignored; copy the example)
     ├── _template/course.py     # Copy this folder to make a new course
     ├── disabling_ai/course.py
     └── using_ai_safely/

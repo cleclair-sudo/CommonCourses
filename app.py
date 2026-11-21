@@ -15,8 +15,12 @@ app.config['SECRET_KEY'] = 'ai-education-event-2027'
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_TYPE'] = 'null'
 
-# Load configuration
-with open(os.path.join(HERE, 'config.json'), 'r') as f:
+# Load local configuration when present, otherwise use the tracked example.
+config_path = os.path.join(HERE, 'plugins', 'config.json')
+if not os.path.exists(config_path):
+    config_path = os.path.join(HERE, 'plugins', 'config.example.json')
+
+with open(config_path, 'r') as f:
     CONFIG = json.load(f)
 
 # Load courses from plugins (also registers their game pages)
