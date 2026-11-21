@@ -1,6 +1,6 @@
 # Interactive Education on CT
 
-An interactive educational platform for teaching about AI, with a modern plugin system for easy course creation.
+An interactive educational platform for teaching about topics with a modern plugin system for easy course creation. Plugins can be developed with Python, Javascript & HTMl (leaving for no educational limitations.)
 
 ## Overview
 
