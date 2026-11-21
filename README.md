@@ -41,12 +41,23 @@ It's incredibly simple:
 
 For detailed instructions, see [QUICKSTART.md](QUICKSTART.md).
 
+## Platform Configuration
+
+Platform branding and theme defaults are set in `plugins/config.json`. To create it, copy `plugins/config.example.json`; if the local file is absent, the app uses the example automatically.
+
+```bash
+cp plugins/config.example.json plugins/config.json
+```
+
+`plugins/config.json` is ignored by Git, keeping local settings separate from base-code updates. Restart the app after editing it. See [CONFIG.md](CONFIG.md) for all available settings.
+
 ## Courses
 
 Currently included:
 
 - **Not Open To AI: Avoiding & Disabling** - Understand AI limitations and when (and how) to turn it off
 - **Open to AI: Risks, Benefits, Community Impact & Self Assessment** - Resource simulator, data center city sim, and a personal AI self-assessment
+- **Platform Development Basics** - Learn how the platform works and how to build, run, and share course plugins
 
 All courses are in the `plugins/` directory.
 
@@ -72,6 +83,8 @@ The platform uses an auto-discovery plugin system:
 
 - [QUICKSTART.md](QUICKSTART.md) - 30-second guide to creating your first course
 - [PLUGINS.md](PLUGINS.md) - Complete plugin development reference
+- [CONFIG.md](CONFIG.md) - Platform branding and theme settings
+- [STARTUP.md](STARTUP.md) - Starting and running the app
 - [ARCHITECTURE.md](ARCHITECTURE.md) - Technical deep dive
 
 ## Project Structure
@@ -92,6 +105,7 @@ The platform uses an auto-discovery plugin system:
     ├── config.json             # Optional local settings (Git-ignored; copy the example)
     ├── _template/course.py     # Copy this folder to make a new course
     ├── disabling_ai/course.py
+    ├── platform_development/course.py
     └── using_ai_safely/
         ├── course.py
         └── games/mayor/        # Data center city sim (html, js, css)
