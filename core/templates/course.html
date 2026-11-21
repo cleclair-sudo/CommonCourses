@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} - AI Learning{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/course.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="course-container">
+    {% if show_toggle %}
+    <button class="theme-toggle corner" id="themeToggle" type="button"></button>
+    {% endif %}
+    <!-- Header -->
+    <div class="course-header" id="courseHeader">
+        <div class="header-content">
+            <a href="/" class="back-button">← Back</a>
+            <div class="header-title">
+                <span class="course-icon">{{ course.icon }}</span>
+                <h1>{{ course.title }}</h1>
+            </div>
+            <p class="course-subtitle">{{ course.subtitle }}</p>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="course-content">
+        <div class="modules-container">
+            <!-- Modules will be loaded here -->
+            <div id="modulesContainer"></div>
+        </div>
+
+        <!-- Activity Display -->
+        <div class="activity-panel" id="activityPanel">
+            <div class="activity-content">
+                <div class="question-container">
+                    <h2 id="questionTitle"></h2>
+                    <div id="optionsContainer" class="options-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <div class="result-icon" id="resultIcon"></div>
+            <h2 id="resultTitle"></h2>
+            <p id="resultMessage"></p>
+            <p id="resultExplanation" class="explanation"></p>
+            <button class="btn btn-primary" id="nextButton">Continue</button>
+        </div>
+    </div>
+
+    <!-- Course Complete Modal -->
+    <div class="modal" id="completeModal">
+        <div class="modal-content">
+            <div class="complete-icon">🎉</div>
+            <h2>You Completed {{ course.title }}!</h2>
+            <p>Fantastic work! You've learned about {{ course.title.lower() }}.</p>
+            <div class="completion-stats">
+                <div class="stat">
+                    <span class="stat-number" id="completedCount">0</span>
+                    <span class="stat-label">Modules Complete</span>
+                </div>
+            </div>
+            <div class="button-group">
+                <a href="/" class="btn btn-primary">Back to Pathways</a>
+                <button class="btn btn-secondary" id="retakeButton">Retake This Path</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const courseData = {{ course | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/course.js') }}"></script>
+{% endblock %}

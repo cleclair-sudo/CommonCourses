@@ -1,0 +1,17 @@
+{
+  "project": {
+    "title": "CommonCourses: Open Source Education with Plugin Support",
+    "subtitle": "Visit the Github page for more information.",
+    "description": "Developed by Corie LeClair | Southern Maine Technology Initiative & McArthur Library, ME",
+    "hero_tip": "💡 Tip: Courses have modules underneath them. Each course you will develop as a plugin"
+  },
+  "theme": {
+    "default": "light",
+    "show_toggle": true
+  },
+  "app": {
+    "name": "Interactive Education Platform",
+    "version": "2.0.0",
+    "author": "Education Team"
+  }
+}

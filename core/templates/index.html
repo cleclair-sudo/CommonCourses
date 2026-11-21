@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}AI Adventure - Pick Your Path{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if show_toggle %}
+    <button class="theme-toggle corner" id="themeToggle" type="button"></button>
+    {% endif %}
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" id="projectTitle">AI Adventure</h1>
+            <p class="hero-subtitle" id="projectSubtitle">Three paths to explore artificial intelligence</p>
+            <p class="hero-description" id="projectDescription">Choose what interests you and dive in. You can explore all of them!</p>
+        </div>
+    </div>
+
+    <div class="courses-grid">
+        <div id="coursesContainer"></div>
+    </div>
+
+    <div class="footer-info">
+        <p id="heroTip">💡 Pro tip: Start with what interests YOU most!</p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
