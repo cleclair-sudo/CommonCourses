@@ -1,4 +1,4 @@
-# Interactive Education on CT
+# CommonCourses
 
 An interactive educational platform for teaching about topics with a modern plugin system for easy course creation. Plugins can be developed with Python, Javascript & HTMl (leaving for no educational limitations.)
 
