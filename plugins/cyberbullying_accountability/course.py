@@ -18,15 +18,15 @@ class CyberbullyingAccountabilityPlugin(CoursePlugin):
         return {
             'id': 'cyberbullying_accountability',
             'title': 'Cyberbullying: Accountability Without Doxing',
-            'subtitle': 'Practice safer choices in a TikTok-style feed',
-            'description': 'Learn how to respond to online harm, support the person targeted, and seek accountability without exposing private information or encouraging a pile-on.',
+            'subtitle': 'What would you do in this TikTok-style feed?',
+            'description': 'Learn how to respond when a post turns into harassment, show support for the person involved, and hold people accountable without sharing private information.',
             'color': '#7B5C9E',
             'icon': '📱',
             'modules': [
                 {
                     'id': 'phone_simulation',
                     'title': 'When Your Feed Crosses a Line',
-                    'content': 'Follow the Accountability vs Doxing branching adventure on a fictional TikTok-style phone. Your comments, likes, shares, reports, and private messages determine which scene and ending you reach.',
+                    'content': 'Go through a TikTok-style feed and choose what to do. Your comments, likes, shares, reports, and messages change what happens next.',
                     'activity_type': 'game',
                     'game_url': '/game/cyberbullying-phone',
                     'button_text': 'Open the Phone'

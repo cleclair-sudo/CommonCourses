@@ -1,16 +1,16 @@
 const adventure = {
     original: {
         title: 'You recognize someone in a clip',
-        context: 'You’re scrolling TikTok. In the fictional video, a teen throws her drink back at a Dunkin drive-through worker and uses a racial slur. She looks like a player on a neighboring school’s field hockey team. The video has few views, but someone has commented that she goes to Falmouth High School. You are not certain it is her.',
+        context: 'You’re watching a TikTok clip of a teen throwing a drink at a worker and using a racial slur. She might play for the field hockey team at a nearby school. Someone in the comments says she goes to Falmouth High School, but you’re not sure.',
         handle: '@campus.clip', avatar: 'C', scene: 'private',
-        image: 'portrait.jpg', imageAlt: 'Stock portrait; unrelated to the fictional incident',
-        tag: 'ORIGINAL CLIP · FICTIONAL',
+        image: 'portrait.jpg', imageAlt: 'Stock portrait',
+        tag: 'ORIGINAL CLIP',
         headline: 'You think you recognize the person.',
         caption: 'A drive-through clip is making the rounds. #StoryTime',
-        likes: 42, privateDetails: false,
+        likes: 42,
         comments: [
-            { from: '@jordan.practice', text: 'I think she goes to Falmouth High School.', identifying: true },
-            { from: '@riley.practice', text: 'Is anyone sure who this is?' }
+            { from: '@jordanm', text: 'I think she goes to Falmouth High School.', identifying: true },
+            { from: '@rileyb', text: 'Is anyone sure who this is?' }
         ],
         commentOptions: [
             { text: 'wait isn’t she on falmouth’s field hockey team?', rating: 'Risky comment', feedback: 'That adds identifying info based on a guess. It can help people track someone down instead of addressing what happened.' },
@@ -20,75 +20,77 @@ const adventure = {
     },
     followup: {
         title: 'A related video appears the next day',
-        context: 'The next day, a related fictional video appears. Its caption asks for help finding the girl to hold her accountable and says the worker was burned by the drink and now needs medical treatment. You feel more pressure to act.',
-        handle: '@coworker.practice', avatar: 'C', scene: 'callout',
-        image: 'cafe.jpg', imageAlt: 'Stock photo of a cafe interior; not the location of the fictional incident',
+        context: 'The next day, another video shows up. It asks people to help find the girl and says the worker got burned and needs medical care. You feel more pressure to do something.',
+        handle: '@casey.l', avatar: 'C', scene: 'callout',
+        image: 'cafe.jpg', imageAlt: 'Stock photo of a cafe interior',
         tag: 'THE NEXT DAY',
         headline: '“Can you help me find this girl?”',
-        caption: 'The fictional creator says their coworker was burned and needs medical treatment. They want help finding the girl.',
-        likes: 3862, privateDetails: false,
+        caption: 'The creator says their coworker was burned and needs medical treatment. They want help finding the girl.',
+        likes: 3862,
         comments: [
-            { from: '@casey.practice', text: 'Someone needs to review the evidence.' },
-            { from: '@jordan.practice', text: 'Does anyone recognize her?' }
+            { from: '@casey.l', text: 'Someone needs to review the evidence.' },
+            { from: '@jordanm', text: 'Does anyone recognize her?' }
         ],
         commentOptions: [
-            { text: 'hold up she plays field hockey at falmouth right?', rating: 'Risky comment', feedback: 'The injury matters, but adding identity clues can put someone at risk. Save evidence privately or use an appropriate reporting channel.' },
+            { text: 'hold up she plays field hockey at falmouth right?', rating: 'Risky comment', feedback: 'What happened to the worker matters, but guessing who she is can put someone at risk. Keep evidence private and report it if needed.' },
             { text: 'someone got hurt?? i think she’s on falmouth’s team', rating: 'Risky comment', feedback: 'Wanting accountability is understandable. Posting a suspected school and team still helps people identify and target someone.' }
         ],
         paths: { screenrecord: 'end_evidence', comment: 'notifications', repost: 'teammate' }
     },
     notifications: {
         title: 'Your comment starts getting replies',
-        context: 'Your phone starts buzzing. Your public comment has 250 likes and many replies. They include the girl’s full name, a link to her TikTok page, field hockey articles, and her address. All personal details are replaced with placeholders in this simulation. Some replies could put her and her family at risk.',
+        context: 'Your comment gets 250 likes and a bunch of replies. People are posting her full name, TikTok page, field hockey articles, and address. Those details are hidden here, but the replies could still put her family at risk.',
         handle: '@campus.clip', avatar: 'C', scene: 'private',
         tag: 'YOUR COMMENT · 250 LIKES',
-        headline: 'The replies have crossed into doxing.',
+        headline: 'People are starting to share private details.',
         caption: 'Your comment is being used to connect identifying details.',
-        likes: 250, privateDetails: true,
+        likes: 250,
         comments: [
-            { from: '@you.practice', text: 'I think she’s on the Falmouth field hockey team.', own: true },
+            { from: '@you', text: 'I think she’s on the Falmouth field hockey team.', own: true },
             { from: '@reply.one', text: 'Her full name is [name withheld]. Her profile is [account withheld].', identifying: true },
             { from: '@reply.two', text: 'Here are field hockey articles: [links withheld].', identifying: true },
             { from: '@reply.three', text: 'Her address is [private address withheld].', identifying: true }
         ],
         commentOptions: [
-            { text: 'yo this is doxing. take her address down', rating: 'Helpful, but not enough on its own', feedback: 'You’re calling out the risk, which is helpful. But a reply doesn’t remove the private info. Report those comments too.' },
-            { text: 'hold her accountable sure but leave her family out of it. delete the private info', rating: 'Helpful, but not enough on its own', feedback: 'Good boundary: accountability isn’t exposing a family. The details are still visible, so reporting is safer than relying on replies alone.' }
+            { text: 'yo this is doxing. take her address down', rating: 'Helpful, but not enough on its own', feedback: 'Calling out the risk is good. A reply alone doesn’t take the information down, though. Report those comments too.' },
+            { text: 'hold her accountable sure but leave her family out of it. delete the private info', rating: 'Helpful, but not enough on its own', feedback: 'That is the right boundary. The details are still visible, so reporting them is safer than replying alone.' }
         ],
         paths: { likeComment: 'end_like_details', reportComments: 'end_report_comments', deleteComment: 'end_delete_comment', reply: 'end_reply' }
     },
     teammate: {
         title: 'Your teammate posts a stitch',
-        context: 'A teammate saw the video you shared or reposted and is extremely upset. She stitches the original video to “expose” the girl. Her stitch gives the girl’s full name and school, then attacks her field hockey skills and appearance. Those identifying details and insults are withheld here.',
-        handle: '@teammate.practice', avatar: 'T', scene: 'callout',
-        image: 'phone.jpg', imageAlt: 'Stock photo of a smartphone; unrelated to the fictional teammate',
+        context: 'A teammate saw the video you shared and is furious. She posts a stitch that gives the girl’s full name and school, then makes fun of her field hockey skills and how she looks.',
+        handle: '@samplays', avatar: 'T', scene: 'callout',
+        image: 'phone.jpg', imageAlt: 'Stock photo of a smartphone',
         tag: 'YOUR TEAMMATE’S STITCH',
         headline: 'Accountability or a personal attack?',
-        caption: 'A fictional stitch names a person and school, then makes personal attacks. Identifying details and insults are withheld.',
-        likes: 987, privateDetails: true,
+        caption: 'A stitch names a person and school, then makes personal attacks.',
+        likes: 987,
         comments: [
-            { from: '@team.practice', text: 'This has turned into personal attacks.' },
-            { from: '@reply.practice', text: 'We can address the behavior without exposing private details.' }
+            { from: '@teammate1', text: 'This has turned into personal attacks.' },
+            { from: '@hockeyfriend', text: 'We can deal with what happened without posting private details.' }
         ],
         paths: { repost: 'end_repost_stitch', scroll: 'end_ignore_stitch', messageTeammate: 'end_message_teammate', reportPost: 'end_report_stitch' }
     }
 };
 
 const endings = {
-    end_scroll: { verdict: 'Good choice', title: 'You didn’t identify the person.', detail: 'You weren’t confident it was the girl you recognized, so you kept scrolling instead of spreading a guess. Accountability should not be based on an uncertain identity.' },
-    end_evidence: { verdict: 'Good choice', title: 'You saved evidence privately.', detail: 'Screen-recording preserves the fictional video without publishing more identifying information. Keep the evidence private and share it only with an appropriate person who can help.' },
-    end_like_details: { verdict: 'Why this is harmful', title: 'Likes can amplify doxing, too.', detail: 'Even liking only the comments you believe are true can boost identifying information and make the person easier to target. A name, account, or article can help others connect more dangerous details.' },
-    end_report_comments: { verdict: 'Good choice', title: 'You reported the exposing comments.', detail: 'You flagged the comments that reveal potentially dangerous information rather than boosting them. Reporting asks the platform to review them; it does not guarantee removal or replace urgent safety help.' },
-    end_delete_comment: { verdict: 'Not the best option on its own', title: 'Deleting your comment limits your contribution.', detail: 'You did not intend to put the girl or her family in danger. Deleting your comment may remove its reply thread, but does not guarantee that copies or other posts disappear. Report the comments exposing private details as well.' },
-    end_reply: { verdict: 'Not the best option on its own', title: 'A warning reply does not remove private details.', detail: 'Explaining that the replies are doxing may help commenters understand, but the identifying information remains visible and more replies may attract attention. Report the exposing comments instead of relying on a public conversation alone.' },
-    end_repost_stitch: { verdict: 'Why this is harmful', title: 'You amplified the personal attacks.', detail: 'Reposting the stitch spreads identifying information and attacks on skills and appearance. Wanting consequences for harmful behavior does not justify a pile-on or exposing a person.' },
-    end_ignore_stitch: { verdict: 'Why this is harmful', title: 'The teammate’s stitch goes too far.', detail: 'Assuming your teammate has accountability covered leaves a harmful stitch unchallenged. In this situation, reporting it or privately talking to your teammate would address the escalation.' },
-    end_message_teammate: { verdict: 'Good choice', title: 'You spoke to your teammate privately.', detail: 'A private conversation gives you a way to explain how exposing identity and attacking appearance crosses the line, without adding to a public pile-on. Ask her to remove the details and use appropriate accountability channels.' },
-    end_report_stitch: { verdict: 'Good choice', title: 'You reported the harmful stitch.', detail: 'Even though the creator is your friend, you flagged the exposure and personal attacks for review. You can support accountability without spreading this content.' }
+    end_scroll: { verdict: 'Good choice', title: 'You didn’t guess who it was.', detail: 'You weren’t sure, so you didn’t spread a name or send people looking for her. Dealing with what happened is better than guessing the person’s identity.' },
+    end_evidence: { verdict: 'Good choice', title: 'You kept the evidence private.', detail: 'Recording the clip keeps a copy without posting someone’s personal details. Keep it private and show it only to a trusted adult or someone who can help.' },
+    end_like_details: { verdict: 'Why this is harmful', title: 'Liking those comments still helps them spread.', detail: 'A like can push identifying comments higher in the feed. One name or link can help other people find even more personal details.' },
+    end_report_comments: { verdict: 'Good choice', title: 'You reported the private details.', detail: 'You flagged the comments instead of boosting them. Reporting can help get them removed, but it may not work right away or replace urgent help.' },
+    end_delete_comment: { verdict: 'Not enough on its own', title: 'Deleting your comment helps a little.', detail: 'Deleting it removes your comment, but copies and replies could still be out there. Report the comments sharing private details too.' },
+    end_reply: { verdict: 'Not enough on its own', title: 'Calling it doxing doesn’t remove the details.', detail: 'Your reply can point out the problem, but the personal information is still visible. Report it instead of just adding more comments.' },
+    end_repost_stitch: { verdict: 'Why this is harmful', title: 'You helped the stitch spread.', detail: 'Reposting sends the personal attacks and private details to more people. Being angry about what happened doesn’t make it okay to join in or pile on.' },
+    end_ignore_stitch: { verdict: 'Why this is harmful', title: 'The stitch went too far.', detail: 'Leaving it alone lets it keep spreading. Report it or talk to your teammate privately instead.' },
+    end_message_teammate: { verdict: 'Good choice', title: 'You talked to your teammate privately.', detail: 'You made the point that sharing someone’s identity and insulting them goes too far. Ask her to remove those parts and take the problem to the right person.' },
+    end_report_stitch: { verdict: 'Good choice', title: 'You reported the stitch.', detail: 'You flagged the post even though the creator is a friend. It is possible to push for consequences without spreading someone’s personal details.' }
 };
 
 const actionNames = {
     send: 'Sent to Field Hockey group', likeComment: 'Liked identifying comment',
+    likePost: 'Liked post', unlikePost: 'Removed like',
+    savePost: 'Saved post', unsavePost: 'Removed saved post',
     repost: 'Reposted', comment: 'Posted comment', scroll: 'Kept scrolling',
     screenrecord: 'Saved screen recording', reportComments: 'Reported exposing comments',
     deleteComment: 'Deleted own comment', reply: 'Replied to comments',
@@ -110,9 +112,9 @@ const actionHints = {
     },
     notifications: {
         likeComment: 'Like the replies you believe are true to boost the name and team information rather than more dangerous details like her address.',
-        reportComments: 'Report the comments exposing potentially dangerous facts because you do not want those details staying online where people could take things too far.',
+        reportComments: 'Report the comments sharing private details instead of letting them stay online.',
         deleteComment: 'You did not mean for people to expose extra information that could put her family in danger. Delete your comment in the hope that its replies disappear too.',
-        reply: 'Tell the commenters they are doxing her. You want accountability, but think they may not realize how harmful the information they posted could be.'
+        reply: 'Tell them they are doxing her and ask them to stop posting personal details.'
     },
     teammate: {
         repost: 'The stitch gets you fired up again, and you repost because you want the girl held responsible.',
@@ -147,6 +149,7 @@ let scrolling = false;
 let commentRatings;
 let hintTarget;
 let hintTimer;
+let activeTimeline;
 
 function reset() {
     sessionVersion += 1;
@@ -154,6 +157,7 @@ function reset() {
     if (sequenceCard) sequenceCard.remove();
     scrolling = false;
     $('feedSequenceStatus').hidden = true;
+    $('feedSequenceStatus').classList.remove('cb-sequence-intro', 'cb-sequence-notice');
     states = Object.fromEntries(Object.entries(adventure).map(([id, moment]) => [id, {
         liked: false, saved: false, reposted: false, reported: false, blocked: false,
         comments: moment.comments.map((comment) => ({ ...comment, liked: false, reported: false })),
@@ -162,7 +166,8 @@ function reset() {
     trail = [];
     commentRatings = [];
     current = 'original';
-    $('finish').hidden = true;
+    activeTimeline = undefined;
+    if ($('finish').open) $('finish').close();
     delete $('finish').dataset.ending;
     $('appContent').hidden = false;
     $('progressStatus').textContent = '';
@@ -180,7 +185,7 @@ function displayedPost() {
 function setPostPhoto(image, post) {
     image.onerror = () => {
         console.error('Stock photo could not be loaded:', image.src);
-        toast('A stock photo could not load. The practice controls are still available.');
+        toast('A stock photo could not load. The controls are still available.');
     };
     image.alt = post.imageAlt;
     image.src = new URL(post.image, photoBase).href;
@@ -245,20 +250,27 @@ function record(label, detail) {
     state().actions.push({ label, detail });
 }
 
+function recordPostAction(action) {
+    trail.push({ scene: adventure[current].title, action, post: displayedPost().handle });
+    renderTimeline();
+}
+
 function renderTimeline() {
     $('timelineEntries').replaceChildren();
+    let activeEntry;
+    let activeKey;
     function addScene(id, opening = false) {
         const scene = adventure[id];
         const entry = element('li', 'cb-timeline-entry cb-timeline-situation');
         entry.append(
-            paragraph(opening ? 'ACCOUNTABILITY VS DOXING · START' : 'NEW SITUATION', 'cb-kicker'),
+            paragraph(opening ? 'WHERE YOU START' : 'WHAT HAPPENS NEXT', 'cb-kicker'),
             element(opening ? 'h1' : 'h3', '', scene.title),
             paragraph(scene.context)
         );
         if (opening) {
             entry.append(
-                paragraph('This is a fictional TikTok-style practice feed. Everything you do stays in this phone. Use only made-up information.', 'cb-disclaimer'),
-                paragraph('The stock photos are unrelated to the fictional events. No incident involving anyone pictured is alleged.', 'cb-disclaimer')
+                paragraph('Choose how you would respond in this TikTok-style feed.', 'cb-disclaimer'),
+                paragraph('The stock photos are illustrative and unrelated to any incident.', 'cb-disclaimer')
             );
         }
         $('timelineEntries').append(entry);
@@ -267,6 +279,18 @@ function renderTimeline() {
     let latestScene = addScene('original', true);
     trail.forEach((step, index) => {
         const entry = element('li', 'cb-timeline-entry');
+        if (step.post) {
+            entry.append(
+                paragraph('YOUR ACTION', 'cb-timeline-scene'),
+                element('h4', '', `${actionNames[step.action]}: ${step.post}`)
+            );
+            if (index === trail.length - 1) {
+                activeEntry = entry;
+                activeKey = `action:${index}`;
+            }
+            $('timelineEntries').append(entry);
+            return;
+        }
         entry.append(
             paragraph('YOUR CHOICE', 'cb-timeline-scene'),
             element('h4', '', actionNames[step.action])
@@ -283,19 +307,35 @@ function renderTimeline() {
                 paragraph(ending.title, 'cb-timeline-result'),
                 paragraph(detail)
             );
+            activeEntry = entry;
+            activeKey = `ending:${step.destination}`;
         }
         $('timelineEntries').append(entry);
         if (!ending && (index < trail.length - 1 || step.destination === current)) {
             latestScene = addScene(step.destination);
         } else if (!ending) {
             entry.append(paragraph('Your feed continues…', 'cb-timeline-next'));
+            activeEntry = entry;
+            activeKey = `action:${index}`;
         }
     });
-    const last = trail[trail.length - 1];
+    const last = [...trail].reverse().find((step) => step.destination);
     if (!last || (!endings[last.destination] && last.destination === current)) {
         latestScene.append(element('h2', '', 'What do you do?'));
-        latestScene.setAttribute('aria-current', 'step');
+        if (!activeEntry) {
+            activeEntry = latestScene;
+            activeKey = `scene:${current}`;
+        }
     }
+    if (activeEntry) {
+        activeEntry.setAttribute('aria-current', 'step');
+        if (activeKey !== activeTimeline) activeEntry.classList.add('cb-timeline-enter');
+        activeTimeline = activeKey;
+    }
+    const timeline = $('timelineEntries');
+    const entries = [...timeline.children].reverse();
+    timeline.style.counterReset = `story-step ${entries.length + 1}`;
+    timeline.replaceChildren(...entries);
 }
 
 function showPost() {
@@ -313,7 +353,6 @@ function showPost() {
     $('creatorButton').textContent = post.avatar;
     $('creatorHandle').textContent = post.handle;
     $('postCaption').textContent = state().blocked ? 'Open their profile to unblock. You can also move to the next post.' : post.caption;
-    $('privateCard').hidden = !moment.privateDetails || state().blocked;
     $('nextButton').disabled = !moment.paths.scroll;
     $('nextButton').hidden = !moment.paths.scroll;
     $('nextButton').setAttribute('aria-label', 'Keep scrolling');
@@ -356,7 +395,7 @@ function result(title, detail) {
     openPanel(title);
     const note = element('div', 'cb-result');
     note.append(element('h3', '', 'What happened'), paragraph(detail));
-    body.append(note, paragraph('This action was simulated locally. No real account or person was contacted.', 'cb-small'));
+    body.append(note);
     body.append(button('Back to post', () => closePanel(), 'cb-button cb-primary'));
 }
 
@@ -376,10 +415,10 @@ function storyActions() {
             ['Repost the video', 'Hope your followers recognize her or know more.', shareMenu, 'repost']
         ],
         notifications: [
-            ['Like an identifying reply', 'Like a reply you believe is correct.', commentsPanel, 'likeComment'],
+            ['Like identifying replies', 'Like three replies you believe are correct.', commentsPanel, 'likeComment'],
             ['Report the exposing comments', 'Flag the replies sharing identifying information.', reportComments, 'reportComments'],
-            ['Delete your comment', 'Remove your original comment and its simulated replies.', commentsPanel, 'deleteComment'],
-            ['Reply to the comments', 'Tell the commenters their posts are doxing.', commentsPanel, 'reply']
+            ['Delete your comment', 'Remove your original comment and replies.', commentsPanel, 'deleteComment'],
+            ['Reply to the comments', 'Tell the commenters to stop posting private details.', commentsPanel, 'reply']
         ],
         teammate: [
             ['Repost the stitch', 'Share your teammate’s video with your followers.', shareMenu, 'repost'],
@@ -400,15 +439,44 @@ function takePath(action) {
     const destination = adventure[current].paths[action];
     if (!destination) throw new Error(`No document path for ${current}: ${action}`);
     trail.push({ scene: adventure[current].title, action, destination });
-    renderTimeline();
     if (destination === 'notifications') {
+        renderTimeline();
         states.notifications.source = current;
         states.notifications.liked = state().liked;
         states.notifications.saved = state().saved;
         states.notifications.blocked = state().blocked;
-        playFeedSequence(destination);
-    } else if (endings[destination]) finishSession(destination);
-    else {
+        playFeedSequence(destination, action);
+    } else if (action === 'likeComment' && current === 'notifications') {
+        showPhoneNotice('Comments liked', destination);
+    } else if (action === 'likeComment' || action === 'repost') {
+        playFeedSequence(destination, action);
+    } else if (action === 'deleteComment') {
+        showPhoneNotice('Comment was deleted', destination);
+    } else completePath(destination);
+}
+
+function showPhoneNotice(message, destination) {
+    scrolling = true;
+    closePanel(false);
+    clearTimeout(toastTimer);
+    $('phoneStatus').hidden = true;
+    const status = $('feedSequenceStatus');
+    status.textContent = message;
+    status.classList.add('cb-sequence-notice');
+    status.hidden = false;
+    feedTimer = setTimeout(() => {
+        scrolling = false;
+        status.hidden = true;
+        status.classList.remove('cb-sequence-notice');
+        completePath(destination);
+    }, 2000);
+}
+
+function completePath(destination) {
+    if (endings[destination]) {
+        renderTimeline();
+        finishSession(destination);
+    } else {
         current = destination;
         showPost();
         toast(current === 'followup' ? 'The next day: a related video appears.' : 'Your teammate saw your share and posted a stitch.');
@@ -416,16 +484,19 @@ function takePath(action) {
     }
 }
 
-function playFeedSequence(destination) {
+function playFeedSequence(destination, action) {
     scrolling = true;
     closePanel(false);
     clearTimeout(toastTimer);
     $('phoneStatus').hidden = true;
     const status = $('feedSequenceStatus');
+    status.textContent = 'So you start scrolling..';
+    status.classList.add('cb-sequence-intro');
     status.hidden = false;
     const topics = [...feedTopics];
     const posts = [];
-    for (let i = 0; i < 3; i++) {
+    const count = action === 'likeComment' ? 6 : 3;
+    for (let i = 0; i < count; i++) {
         posts.push(topics.splice(Math.floor(Math.random() * topics.length), 1)[0]);
     }
     let next = 0;
@@ -434,10 +505,14 @@ function playFeedSequence(destination) {
         if (next === posts.length) {
             scrolling = false;
             status.hidden = true;
-            current = destination;
-            showPost();
-            toast('The post is back. Your comment has 250 likes and new replies.');
-            commentsPanel();
+            if (destination === 'notifications') {
+                current = destination;
+                showPost();
+                toast('The post is back. Your comment has 250 likes and new replies.');
+                commentsPanel();
+            } else {
+                completePath(destination);
+            }
             return;
         }
         const post = posts[next++];
@@ -449,13 +524,12 @@ function playFeedSequence(destination) {
         const photo = sequenceCard.querySelector('#postPhoto');
         setPostPhoto(photo, post);
         photo.hidden = false;
-        sequenceCard.querySelector('.cb-fiction-label').textContent = 'FICTIONAL FEED · STOCK PHOTO';
+        sequenceCard.querySelector('.cb-fiction-label').textContent = 'STOCK PHOTO';
         sequenceCard.querySelector('#postTag').textContent = 'FOR YOU';
         sequenceCard.querySelector('#postHeadline').textContent = headline;
         sequenceCard.querySelector('#creatorHandle').textContent = post.handle;
         sequenceCard.querySelector('#creatorButton').textContent = post.handle[1].toUpperCase();
         sequenceCard.querySelector('#postCaption').textContent = post.caption;
-        sequenceCard.querySelector('#privateCard').hidden = true;
         sequenceCard.querySelector('#likeCount').textContent = (100 + Math.floor(Math.random() * 4000)).toLocaleString();
         sequenceCard.querySelector('#commentCount').textContent = String(3 + Math.floor(Math.random() * 40));
         sequenceCard.querySelector('.cb-feed-progress').hidden = true;
@@ -463,10 +537,14 @@ function playFeedSequence(destination) {
         sequenceCard.removeAttribute('id');
         sequenceCard.querySelectorAll('[id]').forEach((node) => node.removeAttribute('id'));
         $('feed').append(sequenceCard);
-        status.textContent = `Comment posted. Scrolling your feed… ${next} of ${posts.length}: ${headline}`;
+        const label = action === 'likeComment' ? 'Comment liked' : action === 'repost' ? 'Post reposted' : 'Comment posted';
+        status.textContent = `${label}. Scrolling your feed… ${next} of ${posts.length}: ${headline}`;
         feedTimer = setTimeout(showNext, 1700);
     }
-    showNext();
+    feedTimer = setTimeout(() => {
+        status.classList.remove('cb-sequence-intro');
+        showNext();
+    }, 5000);
 }
 
 function reportMenu() {
@@ -480,7 +558,7 @@ function reportMenu() {
     ['Sharing personal information', 'Bullying or harassment', 'Threats or safety concerns', 'Something else'].forEach((reason) => {
         body.append(button(reason, () => {
             state().reported = true;
-            const detail = `Your practice report was sent for review: ${reason}. A report flags behavior without publicly exposing someone. It does not guarantee removal.`;
+            const detail = `Your report was sent: ${reason}. Reporting does not expose the person, but it might take time for the post to be removed.`;
             record(`Reported: ${reason}`, detail);
             if (adventure[current].paths.reportPost) takePath('reportPost');
             else result('Report submitted', detail);
@@ -491,20 +569,20 @@ function reportMenu() {
 
 function shareMenu() {
     openPanel('Share to');
-    body.append(paragraph('Choose where to send this fictional post.'));
+    body.append(paragraph('Choose where to send this post.'));
     body.append(
         button(state().reposted ? 'Remove repost' : 'Repost to your followers', () => {
             state().reposted = !state().reposted;
             updateCounts();
             const detail = state().reposted
-                ? 'Your followers can now see this post in the simulation. Reposting can amplify private information, accusations, and unwanted attention even when your intention is accountability.'
-                : 'Your practice repost was removed. Removing a repost limits your own amplification, but does not erase copies other people may have made.';
+                ? 'Your followers can now see this post. Reposting can amplify private information, accusations, and unwanted attention even when your intention is accountability.'
+                : 'Your repost was removed. Removing a repost limits your own amplification, but does not erase copies other people may have made.';
             record(state().reposted ? 'Reposted to followers' : 'Removed repost', detail);
             if (state().reposted && adventure[current].paths.repost) takePath('repost');
             else result(state().reposted ? 'Reposted' : 'Repost removed', detail);
         }, 'cb-menu-item', 'repost'),
         button('Send to Field Hockey group', () => {
-            const detail = 'The post was sent to the fictional Field Hockey group with “Isn’t this the girl from field hockey?” Sharing an uncertain identification can encourage teammates to expose someone.';
+            const detail = 'The post was sent to the Field Hockey group with “Isn’t this the girl from field hockey?” Sharing an uncertain identification can encourage teammates to expose someone.';
             record('Forwarded to group', detail);
             if (adventure[current].paths.send) takePath('send');
             else result('Sent to Field Hockey group', detail);
@@ -512,14 +590,14 @@ function shareMenu() {
         button('Send privately to teammate', () => messagePanel('Teammate', true), 'cb-menu-item', 'messageTeammate'),
         button('Send privately to a trusted adult', () => messagePanel('Trusted adult', true)),
         button('Copy link', () => {
-            const detail = 'A fictional post link was saved in your phone’s activity history, not your computer clipboard. A link still directs others to the post; keep it private when seeking help.';
-            record('Copied fictional link', detail);
-            result('Link copied in practice phone', detail);
+            const detail = 'A post link was saved in your phone’s activity history, not your computer clipboard. A link still directs others to the post; keep it private when seeking help.';
+            record('Copied link', detail);
+            result('Link copied', detail);
         }),
         button('Save private evidence', () => {
             state().saved = true;
             updateCounts();
-            const detail = 'A private evidence note was saved to your phone profile. Keep identifying information out of public posts and share evidence only with a trusted adult or appropriate moderator.';
+            const detail = 'A note was saved to your phone profile. Keep identifying information out of public posts and show the evidence only to a trusted adult or moderator.';
             record('Saved private evidence', detail);
             result('Evidence saved privately', detail);
         })
@@ -552,13 +630,13 @@ function compose(label, placeholder, suggestions, submitText, onSubmit) {
         event.preventDefault();
         const text = input.value.trim();
         if (!text) {
-            error.textContent = 'Write a fictional message before sending.';
+            error.textContent = 'Write a message before sending.';
             input.focus();
             return;
         }
         onSubmit(text);
     });
-    body.append(form, paragraph('Only made-up details. Text stays in this page and is cleared when you restart or reload.', 'cb-small'));
+    body.append(form, paragraph('Text stays on this page and clears when you restart or reload.', 'cb-small'));
 }
 
 function commentsPanel(replyTo) {
@@ -584,9 +662,17 @@ function commentsPanel(replyTo) {
         if (comment.identifying) {
             const like = button(comment.liked ? '♥ Liked' : '♡ Like comment', () => {
                 comment.liked = !comment.liked;
-                record('Liked identifying comment', 'You boosted a comment identifying the person.');
-                if (adventure[current].paths.likeComment) takePath('likeComment');
-                else commentsPanel();
+                record(comment.liked ? 'Liked identifying comment' : 'Removed comment like', comment.liked
+                    ? 'You boosted a comment identifying the person.'
+                    : 'You removed your like from this comment.');
+                const likedCount = state().comments.filter((entry) => entry.identifying && entry.liked).length;
+                if (adventure[current].paths.likeComment && (current !== 'notifications' || likedCount >= 3)) {
+                    takePath('likeComment');
+                } else {
+                    commentsPanel(replyTo);
+                    const index = state().comments.filter((entry) => entry.identifying).indexOf(comment);
+                    body.querySelectorAll('.cb-comment-action[aria-pressed]')[index].focus();
+                }
             }, 'cb-comment-action', 'likeComment');
             like.setAttribute('aria-label', 'Like identifying comment');
             like.setAttribute('aria-pressed', String(comment.liked));
@@ -597,7 +683,7 @@ function commentsPanel(replyTo) {
             content.append(button('Delete your comment', () => {
                 state().comments = state().comments.filter((entry) => !entry.own && !entry.identifying);
                 updateCounts();
-                record('Deleted own comment', 'The simulated reply thread was removed. Copies elsewhere may still exist.');
+                record('Deleted own comment', 'The reply thread was removed. Copies elsewhere may still exist.');
                 takePath('deleteComment');
             }, 'cb-comment-action', 'deleteComment'));
         }
@@ -606,7 +692,7 @@ function commentsPanel(replyTo) {
     });
     if (!canComment) {
         body.append(
-            paragraph('Comments are read-only in this part of the story. Choose repost, keep scrolling, privately message your teammate, or report the stitch.', 'cb-small'),
+            paragraph('Comments have been turned off on this post.', 'cb-small'),
             button('Story actions', storyActions, 'cb-button cb-primary')
         );
         return;
@@ -616,12 +702,12 @@ function commentsPanel(replyTo) {
         return;
     }
     body.append(element('h3', '', replyTo ? `Reply to ${replyTo}` : 'Pick a comment'));
-    body.append(paragraph('Choose one, then tap Post comment. No typing needed.', 'cb-small'));
+    body.append(paragraph('Choose a reply, then tap Post comment.', 'cb-small'));
     let selected;
     const presets = element('div', 'cb-preset-list');
     const send = button('Post comment', () => {
         const text = selected.text;
-        state().comments.push({ from: '@you.practice', text: replyTo ? `${replyTo} ${text}` : text, rating: selected.rating, feedback: selected.feedback });
+        state().comments.push({ from: '@you', text: replyTo ? `${replyTo} ${text}` : text, rating: selected.rating, feedback: selected.feedback });
         commentRatings.push({ scene: adventure[current].title, ...selected });
         updateCounts();
         record(`Public comment: ${selected.rating}`, selected.feedback);
@@ -651,7 +737,7 @@ function commentsPanel(replyTo) {
 function reportComments() {
     openPanel('Report comments');
     const exposing = state().comments.filter((comment) => comment.identifying);
-    body.append(paragraph('Select the comments exposing information. All details below are fictional placeholders.'));
+    body.append(paragraph('Select the comments exposing information. Identifying details are shown as placeholders.'));
     const selected = new Set(exposing);
     exposing.forEach((comment) => {
         const label = element('label', 'cb-report-choice');
@@ -676,7 +762,7 @@ function reportComments() {
         const remaining = exposing.length - selected.size;
         state().reportDetail = remaining
             ? `You reported ${selected.size} of ${exposing.length} exposing comments. ${remaining} ${remaining === 1 ? 'comment was' : 'comments were'} not reported. Consider reporting the remaining private details too. Reports request a review but do not guarantee removal.`
-            : 'You reported all of the exposing comments in this simulated thread. Reporting asks the platform to review them; it does not guarantee removal or replace urgent safety help.';
+            : 'You reported all of the comments sharing private details. The platform will review them, but there is no guarantee they will be removed.';
         record('Reported exposing comments', state().reportDetail);
         takePath('reportComments');
     }, 'cb-button cb-primary', 'reportComments'));
@@ -688,19 +774,19 @@ function contacts() {
     ['Teammate', 'Trusted adult'].forEach((name) => {
         body.append(button(`${name} · ${state().messages[name].length} sent`, () => messagePanel(name)));
     });
-    body.append(paragraph('These contacts are fictional. No messages leave the simulation.', 'cb-small'));
+    body.append(paragraph('No messages are sent outside this page.', 'cb-small'));
 }
 
 function messagePanel(name, attached = false) {
     openPanel(name);
-    body.append(paragraph(name === 'Teammate' ? 'Your fictional field hockey teammate. Messages are private within this simulation.' : 'An appropriate adult who can help review what happened.', 'cb-small'));
+    body.append(paragraph(name === 'Teammate' ? 'Your field hockey teammate. Messages stay on this page.' : 'A trusted adult who can help with what happened.', 'cb-small'));
     state().messages[name].forEach((message) => {
         const bubble = element('div', 'cb-message');
         bubble.append(element('strong', '', 'You'), paragraph(message.text));
-        if (message.attached) bubble.append(paragraph('Fictional post attached', 'cb-small'));
+        if (message.attached) bubble.append(paragraph('Post attached', 'cb-small'));
         body.append(bubble);
     });
-    if (attached) body.append(paragraph('Attachment: current fictional post. Consider whether sending it will expose the recipient to more harm.', 'cb-result'));
+    if (attached) body.append(paragraph('Attachment: current post. Consider whether sending it will expose the recipient to more harm.', 'cb-result'));
     if (name === 'Teammate' && adventure[current].paths.messageTeammate) {
         body.append(element('h3', '', 'Choose a private message'));
         const messages = [
@@ -729,7 +815,7 @@ function messagePanel(name, attached = false) {
         body.append(choices, send);
         return;
     }
-    compose('Private message', 'Write a fictional message…', name === 'Teammate' ? [
+    compose('Private message', 'Write a message…', name === 'Teammate' ? [
         { label: 'Discuss the stitch', text: 'I know you want accountability, but the stitch exposes her identity and attacks her appearance. Could you remove those details and personal attacks?' },
         { label: 'Use private channels', text: 'Can we share the evidence privately with someone who can help instead of exposing her online?' }
     ] : [
@@ -737,25 +823,25 @@ function messagePanel(name, attached = false) {
     ], 'Send message', (text) => {
         state().messages[name].push({ text, attached });
         const detail = name === 'Teammate'
-            ? 'Your private message was sent to your fictional teammate. A private conversation can address how the stitch has gone too far without starting a public pile-on. No reply is invented.'
-            : 'Your private message was sent to the fictional trusted adult. Appropriate private channels can address behavior without creating a public pile-on.';
+            ? 'Your private message was sent to your teammate. A private conversation can address how the stitch has gone too far without starting a public pile-on.'
+            : 'Your message was sent to the trusted adult. Talking privately can help without starting a public pile-on.';
         record(`Messaged ${name}${attached ? ' with post attached' : ''}`, detail);
         messagePanel(name);
-        body.prepend(paragraph('Message sent in the simulation.', 'cb-result'));
+        body.prepend(paragraph('Message sent.', 'cb-result'));
     });
 }
 
 function createPost() {
     openPanel('Create post');
-    body.append(paragraph('This will publish to your fictional profile, not a real account.'));
-    compose('Post caption', 'Write a fictional post…', [
+    body.append(paragraph('This will publish to your profile.'));
+    compose('Post caption', 'Write a post…', [
         { label: 'General reminder', text: 'Don’t share private information. Support people without reposting their story.' },
-        { label: 'Public call-out', text: '[A public call-out about an unverified fictional account]' },
-        { label: 'Share private details', text: '[Identifying details withheld in this simulation]' }
+        { label: 'Public call-out', text: '[A public call-out about an unverified account]' },
+        { label: 'Share private details', text: '[A post containing private details]' }
     ], 'Publish post', (text) => {
         state().drafts.push(text);
-        const detail = 'Your post was published to your practice profile. Public call-outs can escalate harm. Keep private information and unverified accusations out of public posts.';
-        record('Published a fictional post', detail);
+        const detail = 'Your post was published to your profile. Public call-outs can escalate harm. Keep private information and unverified accusations out of public posts.';
+        record('Published post', detail);
         result('Post published', detail);
     });
 }
@@ -763,20 +849,20 @@ function createPost() {
 function creatorProfile() {
     openPanel('Creator profile');
     body.append(element('div', 'cb-profile-avatar', displayedPost().avatar), paragraph(displayedPost().handle, 'cb-profile-handle'));
-    body.append(paragraph('Fictional public profile. No real identity, address, workplace, or private accounts are available here.', 'cb-small'));
+    body.append(paragraph('Public profile. Identifying details are not shown here.', 'cb-small'));
     body.append(
         button('Message creator', () => {
             openPanel('Message creator');
-            compose('Private message', 'Write a fictional message…', [
-                { label: 'Ask to remove details', text: 'Please remove identifying details from this post. Report the behavior through a fair channel instead.' }
+            compose('Private message', 'Write a message…', [
+                { label: 'Ask to remove details', text: 'Please remove the identifying details from this post. We can report what happened instead.' }
             ], 'Send message', (text) => {
-                const detail = 'Your message to the fictional creator was recorded locally. Direct confrontation may escalate a situation; you can report or block instead.';
+                const detail = 'Your message to the creator was recorded locally. Direct confrontation may escalate a situation; you can report or block instead.';
                 record('Messaged creator', `${detail} Message: ${text}`);
                 result('Message sent', detail);
             });
         }),
         button('Look for identifying information', () => {
-            const detail = 'This practice profile does not reveal private information. Searching for someone’s identity or private accounts to expose them can become doxing. Focus on the behavior and report it through an appropriate channel.';
+            const detail = 'This profile does not show private information. Looking for someone’s identity or personal accounts can turn into doxing. Focus on what happened and report the post.';
             record('Looked for identifying information', detail);
             result('Private information is not available', detail);
         }),
@@ -784,14 +870,14 @@ function creatorProfile() {
             state().blocked = !state().blocked;
             record(state().blocked ? 'Blocked creator' : 'Unblocked creator', 'Blocking limits your contact with an account. It is not a report and does not remove the post for other people.');
             showPost();
-            toast(state().blocked ? 'Creator blocked in the practice phone.' : 'Creator unblocked.');
+            toast(state().blocked ? 'Creator blocked.' : 'Creator unblocked.');
         })
     );
 }
 
 function ownProfile() {
     openPanel('Your profile');
-    body.append(element('div', 'cb-profile-avatar', 'Y'), paragraph('@you.practice', 'cb-profile-handle'));
+    body.append(element('div', 'cb-profile-avatar', 'Y'), paragraph('@you', 'cb-profile-handle'));
     body.append(paragraph(`${state().saved ? '1 saved post' : 'No saved posts'} · ${state().reposted ? '1 repost' : 'No reposts'} · ${state().drafts.length} published posts`));
     state().drafts.forEach((text) => body.append(paragraph(text, 'cb-message')));
     body.append(element('h3', '', 'Activity on this post'));
@@ -801,7 +887,7 @@ function ownProfile() {
         entry.append(element('h3', '', action.label), paragraph(action.detail));
         body.append(entry);
     });
-    body.append(paragraph('Stock photos: Unsplash. Original portrait: Joseph Gonzalez. The images are unrelated to the fictional events.', 'cb-small'));
+    body.append(paragraph('Stock photos: Unsplash. Original portrait: Joseph Gonzalez.', 'cb-small'));
 }
 
 function postOptions() {
@@ -813,19 +899,19 @@ function postOptions() {
             const preview = $('postPhoto').cloneNode();
             preview.removeAttribute('id');
             preview.className = 'cb-record-preview';
-            body.append(preview, paragraph('Recording the fictional post inside this practice phone. Your device camera and microphone are not used.'));
+            body.append(preview, paragraph('Recording the post. Your device camera and microphone are not used.'));
             body.append(button('Stop and save recording', () => {
                 state().saved = true;
                 updateCounts();
-                record('Screen-recorded private evidence', 'A recording note of the fictional post was saved privately in your profile; no actual device recording was made.');
+                record('Screen-recorded private evidence', 'A recording note of the post was saved privately in your profile; no actual device recording was made.');
                 if (adventure[current].paths.screenrecord) takePath('screenrecord');
-                else result('Recording saved in practice phone', 'The evidence note is private. Saving evidence does not report a post or justify publishing identifying information.');
+                else result('Recording saved', 'The evidence note is private. Saving evidence does not report a post or justify publishing identifying information.');
             }, 'cb-button cb-primary', 'screenrecord'));
         }, 'cb-menu-item', 'screenrecord'),
         button('Save private evidence', () => {
             state().saved = true;
             updateCounts();
-            const detail = 'A private evidence note was saved to your profile. Share it only through an appropriate private channel.';
+            const detail = 'A private evidence note was saved to your profile. Share it only with someone you trust.';
             record('Saved private evidence', detail);
             result('Evidence saved', detail);
         }),
@@ -850,8 +936,6 @@ function finishSession(endingId) {
     const ending = endings[endingId];
     closePanel(false);
     clearTimeout(toastTimer);
-    $('appContent').hidden = true;
-    $('finish').hidden = false;
     $('finish').dataset.ending = endingId;
     $('finishVerdict').textContent = ending.verdict;
     $('finishTitle').textContent = ending.title;
@@ -874,25 +958,29 @@ function finishSession(endingId) {
             $('commentSummary').append(judgment);
         });
     }
+    $('finish').showModal();
+    $('finish').scrollTop = 0;
     $('finishTitle').focus();
     const version = sessionVersion;
     saveProgress(courseId, 'phone_simulation').catch((error) => {
         console.error('Failed to save course progress:', error);
-        if (version === sessionVersion) $('progressStatus').textContent = 'Progress could not be saved. Check your connection and practice again.';
+        if (version === sessionVersion) $('progressStatus').textContent = 'Progress could not be saved. Check your connection and try again.';
     });
 }
 
 $('likeButton').addEventListener('click', () => {
     state().liked = !state().liked;
     updateCounts();
-    record(state().liked ? 'Liked post' : 'Removed like', 'Likes can amplify a post. Consider whether you are boosting harmful or unverified content.');
+    record(state().liked ? 'Liked post' : 'Removed like', 'A like can help a post spread. Make sure you are not boosting harmful or unverified claims.');
+    recordPostAction(state().liked ? 'likePost' : 'unlikePost');
     toast(state().liked ? 'Liked. This can boost the post in a real feed.' : 'Like removed.');
 });
 $('bookmarkButton').addEventListener('click', () => {
     state().saved = !state().saved;
     updateCounts();
-    record(state().saved ? 'Bookmarked post' : 'Removed bookmark', 'A bookmark is private, but is not a report or a reliable backup of evidence.');
-    toast(state().saved ? 'Saved to your practice profile.' : 'Removed from saved posts.');
+    record(state().saved ? 'Bookmarked post' : 'Removed bookmark', 'A bookmark keeps the post close, but it does not report it or save every version as evidence.');
+    recordPostAction(state().saved ? 'savePost' : 'unsavePost');
+    toast(state().saved ? 'Saved to your profile.' : 'Removed from saved posts.');
 });
 $('commentsButton').addEventListener('click', () => commentsPanel());
 $('shareButton').addEventListener('click', shareMenu);
@@ -910,6 +998,7 @@ $('restartButton').addEventListener('click', () => {
     reset();
     $('commentsButton').focus();
 });
+$('finish').addEventListener('cancel', (event) => event.preventDefault());
 
 document.addEventListener('pointerover', (event) => {
     const target = event.target.closest('[data-action-hint]');

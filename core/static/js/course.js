@@ -168,7 +168,7 @@ class CourseExperience {
             if (module.sources && module.sources.length) {
                 const sources = document.createElement('details');
                 const summary = document.createElement('summary');
-                summary.textContent = 'Research behind the simulation';
+                summary.textContent = 'Research behind the activity';
                 sources.appendChild(summary);
 
                 const sourceList = document.createElement('ul');
